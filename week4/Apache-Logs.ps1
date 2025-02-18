@@ -6,7 +6,7 @@ function apache-logs ($page, $httpCode, $webBrowser){
     $notfound = $logSearch | Select-String $webBrowser
 
     #Define a regex for IP addresses
-    $regex = [regex] "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
+    $regex = [regex] "\b\d{1,5}\.\d{1,5}\.\d{1,5}\.\d{1,5}\b"
 
     #Get $notfounds records that match to the regex
     $ipsUnorganized = $regex.Match($notfound)
@@ -16,7 +16,7 @@ function apache-logs ($page, $httpCode, $webBrowser){
     for($i=0; $i -lt $ipsUnorganized.Count; $i++){
         $ips += [PSCustomObject]@{ "IP" = $ipsUnorganized[$i].value;}
     }
-    $ipsoftens = $ips | Where-Object { $_.IP -ilike "10.*" }
-    $count = $ipsoftens | Group
-    $count | Select-Object Count, Name
+    $ipsoftens = $ips | Where-Object {$_.IP -ilike "10.*"}
+    $counts = $ipsoftens | Group
+    $counts | Select-Object Count, Name
 }
