@@ -23,7 +23,7 @@ cd C:\xampp\apache\logs
 $notfounds = Get-Content C:\xampp\apache\logs\access.log | Select-String ' 404 '
 
 #Define a regex for IP addresses
-$regex = [regex] "\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b"
+$regex = [regex] "\b\d{1,5}\.\d{1,5}\.\d{1,5}\.\d{1,5}\b"
 
 #Get $notfounds records that match to the regex
 $ipsUnorganized = $regex.Match($notfounds)
