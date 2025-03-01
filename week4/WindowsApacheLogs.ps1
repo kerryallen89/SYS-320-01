@@ -23,10 +23,10 @@ cd C:\xampp\apache\logs
 $notfounds = Get-Content C:\xampp\apache\logs\access.log | Select-String ' 404 '
 
 #Define a regex for IP addresses
-$regex = [regex] "\b\d{1,5}\.\d{1,5}\.\d{1,5}\.\d{1,5}\b"
+$regex = [regex] "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 
 #Get $notfounds records that match to the regex
-$ipsUnorganized = $regex.Match($notfounds)
+$ipsUnorganized = $regex.Matches($notfounds)
 
 #Get ips as pscustomobject
 $ips = @()
@@ -34,5 +34,5 @@ for($i=0; $i -lt $ipsUnorganized.Count; $i++){
  $ips += [PSCustomObject]@{ "IP" = $ipsUnorganized[$i].value;}
 }
 $ipsoftens = $ips | Where-Object { $_.IP -ilike "10.*" }
-$count = $ipsoftens | Group
+$count = $ipsoftens | Group IP
 $count | Select-Object Count, Name
