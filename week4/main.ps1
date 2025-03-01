@@ -7,5 +7,5 @@
 apache-logs SummerCivilian 404 chrome
 
 #Used to test ParsingApacheLogs
-$test = apacheLogFilter
+$test = ApacheLogs1
 $test | Format-Table -AutoSize -Wrap
