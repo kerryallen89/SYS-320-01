@@ -9,7 +9,7 @@ function apache-logs ($page, $httpCode, $webBrowser){
     $regex = [regex] "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 
     #Get $notfounds records that match to the regex
-    $ipsUnorganized = $regex.Matches($notfound)
+    $ipsUnorganized = $regex.Matches($notfounds)
 
     #Get ips as pscustomobject
     $ips = @()
