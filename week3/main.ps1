@@ -12,4 +12,4 @@ $shutdownsTable
 
 # Get Startup from the last 25 days
 $startupsTable = Get-SystemEvents -DaysAgo 25 Where-Object {$_.Event -eq "Startup"}
-$startupsTable
+$startupsTableD
