@@ -1,0 +1,5 @@
+etc/passwd
+/bin/bash
+/bin/sh
+1=1#
+1=1--
